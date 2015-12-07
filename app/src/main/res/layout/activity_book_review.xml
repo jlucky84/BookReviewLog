@@ -1,0 +1,95 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.example.justinlegrand.bookreviewlog.ui.BookReview"
+    style="@style/DefaultScreen">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:weightSum="100"
+        android:id="@+id/linearLayout">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imgBookCover"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:src="@drawable/plain_book_cover"
+            android:contentDescription="image of book cover"
+            android:layout_weight="50"
+            />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="50">
+
+            <EditText
+                style="@style/BookInfoField"
+                android:id="@+id/title"
+                android:text="Book Title"
+                android:inputType="textCapWords"/>
+
+            <EditText
+                style="@style/BookInfoField"
+                android:id="@+id/author"
+                android:text="Author"
+                android:inputType="textPersonName"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="date"
+                android:ems="10"
+                android:id="@+id/dateRead"
+                style="@style/BookInfoField"
+                android:text="12/01/2015"/>
+
+            <RatingBar
+                style="@style/BookInfoField"
+                android:id="@+id/ratingBar"
+                android:numStars="10"
+                android:rating="6"
+                android:stepSize="0.1"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:id="@+id/bookReview"
+        android:layout_below="@+id/linearLayout"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/updateButton"
+        android:text="This is a handy dandy book review, written on the first of December, 2015. The book was fantastic. Waldo, the main character, is hidden on each and every page, and the reader's task is to find him as quickly as possible. Additionally, there are other items found in a key that can be sought after on each page. Cannot wait for the sequel! Dictated, but not read."
+        android:textSize="16sp"
+        android:gravity="top|left"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Update Review"
+        android:id="@+id/updateButton"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"/>
+
+</RelativeLayout>
