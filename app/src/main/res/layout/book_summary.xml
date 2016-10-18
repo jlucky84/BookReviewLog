@@ -1,0 +1,112 @@
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="80dp">
+
+    <com.example.justinlegrand.bookreviewlog.ui.BookSummaryView
+        android:background="#ccc"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="20dp"
+        app:exampleDimension="24sp"
+        app:exampleColor="#33b5e5"
+        app:exampleString="Hello, BookSummaryView"
+        app:exampleDrawable="@android:drawable/ic_menu_add"
+        android:visibility="invisible"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="4"
+        android:layout_margin="2dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/bookImage"
+            android:layout_weight="1"
+            android:src="@drawable/plain_book_cover" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:weightSum="10">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingRight="5dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="18dp"
+                    android:text="Title"
+                    android:id="@+id/titleLabel"
+                    android:textColor="#7c7c7c" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="18dp"
+                    android:text="Author"
+                    android:id="@+id/authorLabel"
+                    android:textColor="#7c7c7c" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="18dp"
+                    android:text="Rating"
+                    android:id="@+id/ratingLabel"
+                    android:textColor="#7c7c7c" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="18dp"
+                    android:text="Date Read"
+                    android:id="@+id/dateReadLabel"
+                    android:textColor="#7c7c7c" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="18dp"
+                    android:text="Title"
+                    android:id="@+id/title"
+                    android:layout_gravity="right|top"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="18dp"
+                    android:text="Author"
+                    android:id="@+id/author"
+                    android:layout_gravity="top|left"/>
+
+                <RatingBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="18dp"
+                    android:id="@+id/ratingBar"
+                    style="@android:style/Widget.DeviceDefault.Light.RatingBar.Small"
+                    android:numStars="10"
+                    android:stepSize=".1"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="18dp"
+                    android:text="Date Read"
+                    android:id="@+id/dateRead" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</FrameLayout>

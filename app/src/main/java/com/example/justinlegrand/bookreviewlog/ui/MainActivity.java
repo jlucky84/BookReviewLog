@@ -2,7 +2,7 @@ package com.example.justinlegrand.bookreviewlog.ui;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -20,21 +20,22 @@ public class MainActivity extends Activity {
     @Bind(R.id.btnWishList) Button mLoadWishlist;
     @Bind(R.id.btnSettings) Button mLoadSettings;
 
-    SqliteDB mSqliteDB;
+    SqliteDB db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
 
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                queryDatabase(mSqliteDB);
+                db = new SqliteDB(MainActivity.this);
+                Cursor res = getDBBookCount();
+                updateButtonData(res);
             }
         });
-
-        ButterKnife.bind(this);
 
         mLoadReviews.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,17 +60,29 @@ public class MainActivity extends Activity {
 
     }
 
-    private void queryDatabase(SqliteDB sqliteDB) {
-        SQLiteDatabase db = mSqliteDB.getReadableDatabase();
-        updateButtonData(db);
+    private Cursor getDBBookCount() {
+        db = new SqliteDB(this);
+        Cursor res = db.getBookData();
+        return res;
     }
 
-
-    private void updateButtonData(SQLiteDatabase db) {
-        int recordCount = 0;
-        db.execSQL(getString(R.string.select_reviewed_books_sql));
-
-        mLoadReviews.setText(String.format(getString(R.string.review_text), recordCount));
+    /**
+     * updateButtonData()
+     * This method updates the BOOK_REVIEW and WISH_LIST buttons
+     * based on how many records were found in BOOK_DATA of books of each type
+     */
+    private void updateButtonData(Cursor res) {
+        int recordCount = res.getCount();
+        int reviewCount = 0;
+        int wishlistCount = 0;
+        while(res.moveToNext()){
+            if(res.getInt(res.getColumnIndexOrThrow("IS_REVIEWED")) == 1)
+                reviewCount++;
+            else
+                wishlistCount++;
+        }
+        mLoadReviews.setText(String.format(getString(R.string.review_text), reviewCount));
+        mLoadWishlist.setText(String.format(getString(R.string.wishlist_text), wishlistCount));
     }
 
     public void showWishlist(){
@@ -82,6 +95,7 @@ public class MainActivity extends Activity {
     }
 
     public void showSettings(){
-        //Intent intent = new Intent(this,Settings.class);
+        Intent intent = new Intent(this,Settings.class);
+        startActivity(intent);
     }
 }

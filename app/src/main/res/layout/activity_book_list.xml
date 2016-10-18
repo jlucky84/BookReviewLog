@@ -9,33 +9,89 @@
     tools:context="com.example.justinlegrand.bookreviewlog.ui.BookListActivity"
     style="@style/DefaultScreen">
 
-    <TextView
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Book Reviews"
-        android:id="@+id/lblBookReviews"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:gravity="center_horizontal"
-        android:textSize="25sp"/>
+        android:id="@+id/headerBar">
 
-    <ListView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/bookList"
-        android:layout_below="@+id/lblBookReviews"
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Book Reviews"
+            android:id="@+id/lblBookReviews"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:gravity="center_horizontal"
+            android:textSize="25sp"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/searchButton"
+            android:layout_alignParentTop="true"
+            android:layout_alignRight="@+id/lblBookReviews"
+            android:layout_alignEnd="@+id/lblBookReviews"
+            android:src="@drawable/hourglass"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@+id/linearLayout"
+        android:layout_below="@+id/headerBar"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:background="@android:color/black">
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/bookList"
+            android:layout_marginBottom="5dip"
+            android:layout_margin="5dip"
+            style="@style/DefaultScreen"
+            android:layout_marginLeft="5dip"
+            android:layout_marginTop="5dip"
+            android:layout_marginRight="5dip"
+            android:choiceMode="singleChoice"
+            android:background="#ffffff" />
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_above="@+id/btnNewReview"/>
+        android:id="@+id/linearLayout">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Review"
-        android:id="@+id/btnNewReview"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        />
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/listSort"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_toRightOf="@+id/btnNewReview"
+            android:layout_toEndOf="@+id/btnNewReview"
+            android:spinnerMode="dropdown"
+            android:layout_weight="4"
+            />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Review"
+            android:id="@+id/btnNewReview"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_weight="1"/>
+    </LinearLayout>
 
 </RelativeLayout>
